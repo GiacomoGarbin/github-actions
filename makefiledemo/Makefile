@@ -4,6 +4,9 @@ main: main.o
 main.o: main.c
 	gcc -c main.c -o main.o
 
+check:
+	main
+
 .PHONY: clean
 clean:
 	rm main.o
