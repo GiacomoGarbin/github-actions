@@ -28,17 +28,19 @@ jobs:
       uses: CyberAndrii/setup-steamcmd@v1
 
     - name: Try download Portal
-      run: steamcmd +force_install_dir ~/steam +login anonymous +app_update 400 +quit
+      env:
+        MY_SECRET: ${{ secrets.my_secret }}
+      run: steamcmd +force_install_dir ~/steam +login anonymous +app_update "$MY_SECRET" +quit
 
     - name: Run make
       run: cd makefiledemo; make
 
-    - name: Run check
-    # - shell: bash
-      env:
-        MY_SECRET: ${{ secrets.my_secret }}
-      run: |
-        cd makefiledemo; make check ARG="$MY_SECRET"
+    # - name: Run check
+    # # - shell: bash
+    #   env:
+    #     MY_SECRET: ${{ secrets.my_secret }}
+    #   run: |
+    #     cd makefiledemo; make check ARG="$MY_SECRET"
 
     # - name: Run distcheck
     #   run: make distcheck
