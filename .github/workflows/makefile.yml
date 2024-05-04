@@ -27,6 +27,9 @@ jobs:
     - name: Setup steamcmd
       uses: CyberAndrii/setup-steamcmd@v1
 
+    - name: Try download Portal
+      run: steamcmd +force_install_dir ~/steam +login anonymous +app_update 400 +quit
+
     - name: Run make
       run: cd makefiledemo; make
 
