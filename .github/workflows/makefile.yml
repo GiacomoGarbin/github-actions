@@ -14,14 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Check files
-      run: ls -l
-
     # - name: configure
     #   run: ./configure
 
     - name: Run make
-      run: make
+      run: cd makefiledemo; make
 
     # - name: Run check
     #   run: make check
