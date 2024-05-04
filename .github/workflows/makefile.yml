@@ -20,6 +20,9 @@ jobs:
     - name: Run make
       run: cd makefiledemo; make
 
+    - name: Check files
+      run: ls -l
+
     # - name: Run check
     #   run: make check
 
