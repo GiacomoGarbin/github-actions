@@ -5,7 +5,7 @@ main.o: main.c
 	gcc -c main.c -o main.o
 
 check:
-	main
+	./main
 
 .PHONY: clean
 clean:
