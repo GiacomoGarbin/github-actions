@@ -21,7 +21,10 @@ jobs:
       run: cd makefiledemo; make
 
     - name: Run check
-      run: cd makefiledemo; make check ARG=${{ secrets.my_secret }}
+    - shell: bash
+      env:
+        MY_SECRET: ${{ secrets.my_secret }}
+      run: cd makefiledemo; make check ARG="$MY_SECRET"
 
     # - name: Run distcheck
     #   run: make distcheck
