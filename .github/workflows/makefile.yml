@@ -17,12 +17,15 @@ jobs:
     # - name: configure
     #   run: ./configure
 
-    - name: Install SteamCMD
-      run: |
-        sudo add-apt-repository multiverse
-        sudo dpkg --add-architecture i386
-        sudo apt update
-        sudo apt install steamcmd
+    # - name: Install SteamCMD
+    #   run: |
+    #     sudo add-apt-repository multiverse
+    #     sudo dpkg --add-architecture i386
+    #     sudo apt update
+    #     sudo apt install steamcmd
+
+    - name: Setup steamcmd
+      uses: CyberAndrii/setup-steamcmd@v1
 
     - name: Run make
       run: cd makefiledemo; make
