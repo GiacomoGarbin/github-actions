@@ -21,7 +21,7 @@ jobs:
       run: cd makefiledemo; make
 
     - name: Run check
-      run: make check
+      run: cd makefiledemo; make check
 
     # - name: Run distcheck
     #   run: make distcheck
