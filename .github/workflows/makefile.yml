@@ -8,6 +8,8 @@ on:
 
 env:
   BLENDER_3_6: "/snap/bin/blender"
+  N64_LIBGCCDIR: "/opt/crashsdk/lib/gcc/mips64-elf/12.2.0"
+  ROOT: "/etc/n64"
 
 jobs:
   build:
@@ -73,5 +75,8 @@ jobs:
     - name: Build ROM
       run: |
         cd portal64
+        echo $PATH
+        echo 'export PATH=$PATH:/opt/crashsdk/bin' >> ~/.bashrc
+        echo $PATH
         make
 
