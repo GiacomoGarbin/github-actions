@@ -13,14 +13,24 @@ jobs:
 
     steps:
 
-    - name: Install SteamCMD (Debian)
+    - name: Install SteamCMD (manually)
       run: |
-        sudo apt update
-        sudo apt install software-properties-common
-        sudo apt-add-repository non-free
-        sudo dpkg --add-architecture i386
-        sudo apt update
-        sudo apt install steamcmd
+        sudo apt-get install lib32gcc-s1
+        mkdir ~/SteamCMD && cd ~/SteamCMD
+        curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+
+    - name: Check SteamCMD
+      run: |
+        ls -l ~/SteamCMD
+
+    # - name: Install SteamCMD (Debian)
+    #   run: |
+    #     sudo apt update
+    #     sudo apt install software-properties-common
+    #     sudo apt-add-repository non-free
+    #     sudo dpkg --add-architecture i386
+    #     sudo apt update
+    #     sudo apt install steamcmd
     
     - uses: actions/checkout@v4
 
@@ -43,10 +53,6 @@ jobs:
     #   # run: steamcmd +force_install_dir ~/steam +login anonymous +app_update "$MY_SECRET" +quit
     #   # run: steamcmd +force_install_dir ~/steam +login anonymous +app_update 1337 +quit
     #   run: steamcmd +login anonymous +app_update 1337 validate +quit
-
-    - name: Check folder
-      run: |
-        pwd
         
     - uses: ./
       with:
