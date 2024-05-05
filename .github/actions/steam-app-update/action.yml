@@ -1,0 +1,21 @@
+name: SteamAppUpdate
+inputs:
+  steamcmd:
+    required: true
+  appid:
+    required: true
+  username:
+    required: true
+  password:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Steam App Update
+      shell: bash
+      run: $STEAMCMD +login $USERNAME $PASSWORD +app_update $APPID +quit
+      env:
+        STEAMCMD: ${{ inputs.steamcmd }}
+        APPID:    ${{ inputs.appid }}
+        USERNAME: ${{ inputs.username }}
+        PASSWORD: ${{ inputs.password }}
