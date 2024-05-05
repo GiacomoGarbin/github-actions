@@ -32,6 +32,7 @@ runs:
         ls -la ~
         ~/SteamCMD/steamcmd.sh +quit
         ls -la ~
-        mkdir ~/Steam/config
+        ls -la ~/Steam
+        ls -la ~/Steam/config
         echo "$CONFIGVDF" | base64 -d > "~/Steam/config/config.vdf"
         ~/SteamCMD/steamcmd.sh +login $USERNAME +app_update $APPID +quit
