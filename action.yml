@@ -2,4 +2,5 @@ name: MyAction
 runs:
   steps:
     - name: 1st step
+      shell: bash
       run: echo "Hello World!"
