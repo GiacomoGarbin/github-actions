@@ -49,6 +49,7 @@ jobs:
         sudo chmod +x tools/setup.sh
         ./tools/setup.sh
         ln -s ~/Steam/steamapps/common/Portal vpk/Portal
+        env
 
     - name: Check result
       run: |
