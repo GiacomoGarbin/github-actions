@@ -1,7 +1,12 @@
 name: MyAction
+inputs:
+  my-secret:
+    required: true
 runs:
   using: "composite"
   steps:
     - name: 1st step
       shell: bash
-      run: echo "Hello World!"
+      run: echo "secret: $MY_SECRET"
+      env:
+        MY_SECRET: ${{ inputs.my-secret }}
