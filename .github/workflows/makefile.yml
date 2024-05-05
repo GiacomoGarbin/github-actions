@@ -13,69 +13,38 @@ jobs:
 
     steps:
 
-    - name: Download SteamCMD
-      run: |
-        sudo apt-get install lib32gcc-s1
-        mkdir ~/SteamCMD && cd ~/SteamCMD
-        curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-
-    - name: Setup SteamCMD
-      env:
-        CONFIGVDF: ${{ secrets.steam_config_vdf }}
-      run: |
-        ~/SteamCMD/steamcmd.sh +quit
-        echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
-
-    - name: Download Portal
-      env:
-        USERNAME: ${{ secrets.steam_username }}
-        APPID:    400
-      run: |
-        ~/SteamCMD/steamcmd.sh +login "$USERNAME" +app_update "$APPID" +quit
-    
-    # - uses: actions/checkout@v4
-
-    # - name: Check PWD & SteamCMD
+    # - name: Download SteamCMD
     #   run: |
-    #     pwd
-    #     ls -la .github/actions
-    #     ls -la ~/SteamCMD/steamcmd.sh
-    
-    # - uses: ./.github/actions/steam-app-update
-    #   with:
-    #     steamcmd:  "~/SteamCMD/steamcmd.sh"
-    #     appid:     400
-    #     username:  ${{ secrets.steam_username   }}
-    #     password:  ${{ secrets.steam_password   }}
-    #     configvdf: ${{ secrets.steam_config_vdf }}
-    
+    #     sudo apt-get install lib32gcc-s1
+    #     mkdir ~/SteamCMD
+    #     cd ~/SteamCMD
+    #     curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
-    # - name: configure
-    #   run: ./configure
-
-
-    # - name: Try download game from Steam
-    # #   env:
-    # #     MY_SECRET: ${{ secrets.my_secret }}
-    #   # run: steamcmd +force_install_dir ~/steam +login anonymous +app_update "$MY_SECRET" +quit
-    #   # run: steamcmd +force_install_dir ~/steam +login anonymous +app_update 1337 +quit
-    #   run: steamcmd +login anonymous +app_update 1337 validate +quit
-        
-    # - uses: ./
-    #   with:
-    #     my-secret: ${{ secrets.my_secret }}
-
-    # - name: Run make
-    #   run: |
-    #     cd makefiledemo
-    #     make
-
-    # - name: Run check
-    # # - shell: bash
+    # - name: Setup SteamCMD
     #   env:
-    #     MY_SECRET: ${{ secrets.my_secret }}
+    #     CONFIGVDF: ${{ secrets.steam_config_vdf }}
     #   run: |
-    #     cd makefiledemo; make check ARG="$MY_SECRET"
+    #     ~/SteamCMD/steamcmd.sh +quit
+    #     echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
 
-    # - name: Run distcheck
-    #   run: make distcheck
+    # - name: Download Portal
+    #   env:
+    #     USERNAME: ${{ secrets.steam_username }}
+    #     APPID:    400
+    #   run: |
+    #     ~/SteamCMD/steamcmd.sh +login "$USERNAME" +app_update "$APPID" +quit
+    
+
+
+    # - uses: actions/checkout@v4
+    
+    - name: Checkout portal64-still-alive
+      run: |
+        sudo apt install git -y
+        git clone https://github.com/mwpenny/portal64-still-alive.git portal64
+        cd portal64
+
+    - name: Check result
+      run: |
+        pwd
+        ls -la .
