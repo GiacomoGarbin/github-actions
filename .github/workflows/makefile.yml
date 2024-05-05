@@ -40,7 +40,7 @@ jobs:
         
     - uses: ./
       with:
-        my-secret: "Hello World"
+        my-secret: ${{ secrets.my_secret }}
 
     - name: Run make
       run: |
