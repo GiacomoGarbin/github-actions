@@ -55,6 +55,9 @@ jobs:
         cd portal64
         ls -la .
         ls -la vpk
+        ls -la vpk/Portal
+        ls -la vpk/Portal/portal
+        ls -la vpk/Portal/portal/resource
         ls -la vpk/Portal/portal/resource/closecaption_english.txt
   
     - name: Build ROM
