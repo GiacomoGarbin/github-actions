@@ -28,10 +28,11 @@ jobs:
     
     - uses: actions/checkout@v4
 
-    - name: Check PWD
+    - name: Check PWD & SteamCMD
       run: |
         pwd
         ls -la .github/actions
+        ls -la ~/SteamCMD/steamcmd.sh
     
     - uses: ./.github/actions/steam-app-update
       with:
