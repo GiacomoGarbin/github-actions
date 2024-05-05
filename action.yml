@@ -1,5 +1,6 @@
 name: MyAction
 runs:
+  using: "composite"
   steps:
     - name: 1st step
       shell: bash
