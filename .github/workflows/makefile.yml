@@ -31,7 +31,7 @@ jobs:
     - name: Check PWD
       run: |
         pwd
-        ls -l .
+        ls -la .
     
     # - uses: ~/github-actions/.github/actions/steam-app-update@827e850685140bf0a134b7b4c32db8a89f779124
     #   with:
