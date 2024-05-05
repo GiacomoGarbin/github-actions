@@ -7,6 +7,6 @@ runs:
   steps:
     - name: 1st step
       shell: bash
-      run: echo "secret: $MY_SECRET"
+      run: echo "$MY_SECRET"
       env:
         MY_SECRET: ${{ inputs.my-secret }}
