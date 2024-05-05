@@ -39,6 +39,8 @@ jobs:
         pwd
         
     - uses: ./
+      with:
+        my-secret: "Hello World"
 
     - name: Run make
       run: |
