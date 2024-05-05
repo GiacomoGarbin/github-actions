@@ -18,65 +18,53 @@ jobs:
 
     steps:
 
-    - name: Download SteamCMD
-      run: |
-        sudo apt-get install lib32gcc-s1
-        mkdir ~/SteamCMD
-        cd ~/SteamCMD
-        curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+    # - name: Download SteamCMD
+    #   run: |
+    #     sudo apt-get install lib32gcc-s1
+    #     mkdir ~/SteamCMD
+    #     cd ~/SteamCMD
+    #     curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
-    - name: Setup SteamCMD
-      env:
-        CONFIGVDF: ${{ secrets.steam_config_vdf }}
-      run: |
-        ~/SteamCMD/steamcmd.sh +quit
-        echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
+    # - name: Setup SteamCMD
+    #   env:
+    #     CONFIGVDF: ${{ secrets.steam_config_vdf }}
+    #   run: |
+    #     ~/SteamCMD/steamcmd.sh +quit
+    #     echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
 
-    - name: Download Portal
-      env:
-        USERNAME: ${{ secrets.steam_username }}
-        APPID:    400
-      run: |
-        ~/SteamCMD/steamcmd.sh +login "$USERNAME" +app_update "$APPID" +quit
+    # - name: Download Portal
+    #   env:
+    #     USERNAME: ${{ secrets.steam_username }}
+    #     APPID:    400
+    #   run: |
+    #     ~/SteamCMD/steamcmd.sh +login "$USERNAME" +app_update "$APPID" +quit
 
-    # - uses: actions/checkout@v4
+    # # - uses: actions/checkout@v4
     
-    - name: Checkout portal64-still-alive
-      run: |
-        sudo apt install git -y
-        git clone https://github.com/mwpenny/portal64-still-alive.git portal64
+    # - name: Checkout portal64-still-alive
+    #   run: |
+    #     sudo apt install git -y
+    #     git clone https://github.com/mwpenny/portal64-still-alive.git portal64
 
-    - name: Setup and install dependencies
-      run: |
-        cd portal64
-        sudo chmod +x skelatool64/setup_dependencies.sh
-        sudo chmod +x tools/romfix64.sh
-        sudo chmod +x tools/setup.sh
-        ./tools/setup.sh
-        ln -s ~/Steam/steamapps/common/Portal vpk/Portal
-        env
+    # - name: Setup and install dependencies
+    #   run: |
+    #     cd portal64
+    #     sudo chmod +x skelatool64/setup_dependencies.sh
+    #     sudo chmod +x tools/romfix64.sh
+    #     sudo chmod +x tools/setup.sh
+    #     ./tools/setup.sh
+    #     ln -s ~/Steam/steamapps/common/Portal vpk/Portal
+    #     env
 
     - name: Check result
       run: |
-        env
-    #     ls -la ~/Steam
-    #     ls -la ~/Steam/portal
-    #     ls -la ~/Steam/portal/resource
-    #     ls -la ~/Steam/portal/resource/closecaption_english.txt
-    #     cd portal64
-    #     ls -la .
-    #     ls -la vpk
-    #     ls -la vpk/Portal
-    #     ls -la vpk/Portal/
-    #     ls -la vpk/Portal/portal
-    #     ls -la vpk/Portal/portal/resource
-    #     ls -la vpk/Portal/portal/resource/closecaption_english.txt
+        echo $PATH
+        # echo 'export PATH=$PATH:/opt/crashsdk/bin' >> ~/.bashrc
+        PATH=/opt/crashsdk/bin:$PATH
+        echo $PATH
   
-    - name: Build ROM
-      run: |
-        cd portal64
-        echo $PATH
-        echo 'export PATH=$PATH:/opt/crashsdk/bin' >> ~/.bashrc
-        echo $PATH
-        make
+    # - name: Build ROM
+    #   run: |
+    #     cd portal64
+    #     make
 
