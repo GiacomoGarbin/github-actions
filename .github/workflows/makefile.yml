@@ -38,7 +38,7 @@ jobs:
       run: |
         ls -l ./action.yml
         
-    - uses: ./action
+    - uses: ./.github/actions/action.yml
 
     - name: Run make
       run: |
