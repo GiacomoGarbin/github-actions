@@ -34,5 +34,5 @@ runs:
         ls -la ~
         ls -la ~/Steam
         ls -la ~/Steam/config
-        echo "$CONFIGVDF" | base64 -d > "~/Steam/config/config.vdf"
+        echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
         ~/SteamCMD/steamcmd.sh +login $USERNAME +app_update $APPID +quit
