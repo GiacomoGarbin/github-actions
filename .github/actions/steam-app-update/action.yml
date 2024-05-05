@@ -16,6 +16,8 @@ runs:
       run: |
         pwd
         ls -la .
+        ls -la ~
+        ls -la ~/SteamCMD
     - name: Steam App Update
       shell: bash
       run: $STEAMCMD +login $USERNAME $PASSWORD +app_update $APPID +quit
