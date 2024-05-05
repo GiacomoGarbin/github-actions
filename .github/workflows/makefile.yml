@@ -27,6 +27,11 @@ jobs:
     #   run: ~/SteamCMD/steamcmd.sh +login anonymous +app_update 400 +quit
     
     - uses: actions/checkout@v4
+
+    - name: Check PWD
+      run: |
+        pwd
+        ls -l .
     
     - uses: ~/github-actions/.github/actions/steam-app-update@827e850685140bf0a134b7b4c32db8a89f779124
       with:
