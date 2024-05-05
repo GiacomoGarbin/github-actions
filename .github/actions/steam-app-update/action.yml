@@ -20,7 +20,7 @@ runs:
         ls -la ~/SteamCMD
     - name: Steam App Update
       shell: bash
-      run: $STEAMCMD +login $USERNAME $PASSWORD +app_update $APPID +quit
+      run: ~/SteamCMD/steamcmd.sh +login $USERNAME $PASSWORD +app_update $APPID +quit
       env:
         STEAMCMD: ${{ inputs.steamcmd }}
         APPID:    ${{ inputs.appid }}
