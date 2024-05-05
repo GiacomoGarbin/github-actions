@@ -13,34 +13,41 @@ jobs:
 
     steps:
 
-    - name: Install SteamCMD (manually)
+    - name: Download SteamCMD
       run: |
         sudo apt-get install lib32gcc-s1
         mkdir ~/SteamCMD && cd ~/SteamCMD
         curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
-    # - name: Check SteamCMD
-    #   run: |
-    #     ls -l ~/SteamCMD
-
-    # - name: Download Game
-    #   run: ~/SteamCMD/steamcmd.sh +login anonymous +app_update 400 +quit
-    
-    - uses: actions/checkout@v4
-
-    - name: Check PWD & SteamCMD
+    - name: Setup SteamCMD
+      env:
+        CONFIGVDF: ${{ secrets.steam_config_vdf }}
       run: |
-        pwd
-        ls -la .github/actions
-        ls -la ~/SteamCMD/steamcmd.sh
+        ~/SteamCMD/steamcmd.sh +quit
+        echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
+
+    - name: Download Portal
+      env:
+        USERNAME: ${{ secrets.steam_username }}
+        APPID:    400
+      run: |
+        ~/SteamCMD/steamcmd.sh +login "$USERNAME" +app_update "$APPID" +quit
     
-    - uses: ./.github/actions/steam-app-update
-      with:
-        steamcmd:  "~/SteamCMD/steamcmd.sh"
-        appid:     400
-        username:  ${{ secrets.steam_username   }}
-        password:  ${{ secrets.steam_password   }}
-        configvdf: ${{ secrets.steam_config_vdf }}
+    # - uses: actions/checkout@v4
+
+    # - name: Check PWD & SteamCMD
+    #   run: |
+    #     pwd
+    #     ls -la .github/actions
+    #     ls -la ~/SteamCMD/steamcmd.sh
+    
+    # - uses: ./.github/actions/steam-app-update
+    #   with:
+    #     steamcmd:  "~/SteamCMD/steamcmd.sh"
+    #     appid:     400
+    #     username:  ${{ secrets.steam_username   }}
+    #     password:  ${{ secrets.steam_password   }}
+    #     configvdf: ${{ secrets.steam_config_vdf }}
     
 
     # - name: configure
@@ -54,14 +61,14 @@ jobs:
     #   # run: steamcmd +force_install_dir ~/steam +login anonymous +app_update 1337 +quit
     #   run: steamcmd +login anonymous +app_update 1337 validate +quit
         
-    - uses: ./
-      with:
-        my-secret: ${{ secrets.my_secret }}
+    # - uses: ./
+    #   with:
+    #     my-secret: ${{ secrets.my_secret }}
 
-    - name: Run make
-      run: |
-        cd makefiledemo
-        make
+    # - name: Run make
+    #   run: |
+    #     cd makefiledemo
+    #     make
 
     # - name: Run check
     # # - shell: bash
