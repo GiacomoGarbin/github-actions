@@ -13,13 +13,13 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Check PWD
-      shell: bash
-      run: |
-        pwd
-        ls -la .
-        ls -la ~
-        ls -la ~/SteamCMD
+    # - name: Check PWD
+    #   shell: bash
+    #   run: |
+    #     pwd
+    #     ls -la .
+    #     ls -la ~
+    #     ls -la ~/SteamCMD
     - name: Steam App Update
       shell: bash
       env:
@@ -29,6 +29,9 @@ runs:
         PASSWORD:  ${{ inputs.password }}
         CONFIGVDF: ${{ inputs.configvdf }}
       run: |
+        ls -la ~
+        ~/SteamCMD/steamcmd.sh +quit
+        ls -la ~
         mkdir ~/Steam/config
         echo "$CONFIGVDF" | base64 -d > "~/Steam/config/config.vdf"
         ~/SteamCMD/steamcmd.sh +login $USERNAME +app_update $APPID +quit
