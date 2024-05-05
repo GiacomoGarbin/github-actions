@@ -30,7 +30,7 @@ runs:
         CONFIGVDF: ${{ inputs.configvdf }}
       run: |
         ls -la ~
-        "$STEAMCMD" +quit
+        ~/SteamCMD/steamcmd.sh +quit
         ls -la ~
         ls -la ~/Steam
         ls -la ~/Steam/config
