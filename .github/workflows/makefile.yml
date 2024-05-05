@@ -12,12 +12,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Install SteamCMD (Debian)
+      run: |
+        sudo apt update
+        sudo apt install software-properties-common
+        sudo apt-add-repository non-free
+        sudo dpkg --add-architecture i386
+        sudo apt update
+        sudo apt install steamcmd
+    
     - uses: actions/checkout@v4
 
     # - name: configure
     #   run: ./configure
 
-    # - name: Install SteamCMD
+    # - name: Install SteamCMD (Ubuntu)
     #   run: |
     #     sudo add-apt-repository multiverse
     #     sudo dpkg --add-architecture i386
