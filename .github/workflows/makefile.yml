@@ -34,9 +34,9 @@ jobs:
     #   # run: steamcmd +force_install_dir ~/steam +login anonymous +app_update 1337 +quit
     #   run: steamcmd +login anonymous +app_update 1337 validate +quit
 
-    - name: Check files
+    - name: Check file
       run: |
-        ls -l
+        ls -l ./action.yml
         
     - uses: ./action.yml
 
