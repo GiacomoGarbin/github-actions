@@ -30,9 +30,9 @@ runs:
         CONFIGVDF: ${{ inputs.configvdf }}
       run: |
         ls -la ~
-        ~/SteamCMD/steamcmd.sh +quit
+        "$STEAMCMD" +quit
         ls -la ~
         ls -la ~/Steam
         ls -la ~/Steam/config
         echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
-        ~/SteamCMD/steamcmd.sh +login $USERNAME +app_update $APPID +quit
+        ~/SteamCMD/steamcmd.sh +login "$USERNAME" "$PASSWORD" +app_update "$APPID" +quit
