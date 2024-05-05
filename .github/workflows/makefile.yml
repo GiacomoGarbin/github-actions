@@ -23,33 +23,21 @@ jobs:
     #   run: |
     #     ls -l ~/SteamCMD
 
-    - name: Download Game
-      run: ~/SteamCMD/steamcmd.sh +login anonymous +app_update 400 +quit
-        
-
-    # - name: Install SteamCMD (Debian)
-    #   run: |
-    #     sudo apt update
-    #     sudo apt install software-properties-common
-    #     sudo apt-add-repository non-free
-    #     sudo dpkg --add-architecture i386
-    #     sudo apt update
-    #     sudo apt install steamcmd
+    # - name: Download Game
+    #   run: ~/SteamCMD/steamcmd.sh +login anonymous +app_update 400 +quit
+    
+    - uses: ~/.github/actions/steam-app-update
+      with:
+        steamcmd: "~/SteamCMD/steamcmd.sh"
+        appid:    400
+        username: ${{ secrets.steam_username }}
+        password: ${{ secrets.steam_password }}
     
     - uses: actions/checkout@v4
 
     # - name: configure
     #   run: ./configure
 
-    # - name: Install SteamCMD (Ubuntu)
-    #   run: |
-    #     sudo add-apt-repository multiverse
-    #     sudo dpkg --add-architecture i386
-    #     sudo apt update
-    #     sudo apt install steamcmd
-
-    # - name: Setup steamcmd
-    #   uses: CyberAndrii/setup-steamcmd@v1
 
     # - name: Try download game from Steam
     # #   env:
