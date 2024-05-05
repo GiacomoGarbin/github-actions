@@ -1,0 +1,6 @@
+name: MyAction
+jobs:
+  MyJob:
+    steps:
+      - name: 1st step
+        run: echo "Hello World!"
