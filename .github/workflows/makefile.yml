@@ -38,9 +38,9 @@ jobs:
       with:
         steamcmd:  "~/SteamCMD/steamcmd.sh"
         appid:     400
-        username:  ${{ secrets.steam_username  }}
-        password:  ${{ secrets.steam_password  }}
-        configvdf: ${{ secrets.steam_configvdf }}
+        username:  ${{ secrets.steam_username   }}
+        password:  ${{ secrets.steam_password   }}
+        configvdf: ${{ secrets.steam_config_vdf }}
     
 
     # - name: configure
