@@ -11,6 +11,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Check PWD
+      shell: bash
+      run: |
+        pwd
+        ls -la .
     - name: Steam App Update
       shell: bash
       run: $STEAMCMD +login $USERNAME $PASSWORD +app_update $APPID +quit
