@@ -34,8 +34,7 @@ jobs:
         ls -la .github/actions
         ls -la ~/SteamCMD/steamcmd.sh
     
-    # - uses: ./.github/actions/steam-app-update
-    - uses: .github/actions/steam-app-update
+    - uses: ./.github/actions/steam-app-update
       with:
         steamcmd: "~/SteamCMD/steamcmd.sh"
         appid:    400
