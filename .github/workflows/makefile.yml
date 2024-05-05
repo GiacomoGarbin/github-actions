@@ -38,7 +38,7 @@ jobs:
       run: |
         pwd
         
-    - uses: ./.github/actions/action.yml
+    - uses: ./
 
     - name: Run make
       run: |
