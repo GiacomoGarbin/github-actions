@@ -41,11 +41,6 @@ jobs:
         sudo apt install git -y
         git clone https://github.com/mwpenny/portal64-still-alive.git portal64
 
-    # - name: Check result
-    #   run: |
-    #     pwd
-    #     ls -la .
-
     - name: Setup and install dependencies
       run: |
         cd portal64
@@ -54,6 +49,12 @@ jobs:
         sudo chmod +x tools/setup.sh
         ./tools/setup.sh
         ln -s ~/Steam vpk/Portal
+
+    - name: Check result
+      run: |
+        cd portal64
+        ls -la .
+        ls -la vpk
   
     - name: Build ROM
       run: |
