@@ -36,10 +36,11 @@ jobs:
     
     - uses: ./.github/actions/steam-app-update
       with:
-        steamcmd: "~/SteamCMD/steamcmd.sh"
-        appid:    400
-        username: ${{ secrets.steam_username }}
-        password: ${{ secrets.steam_password }}
+        steamcmd:  "~/SteamCMD/steamcmd.sh"
+        appid:     400
+        username:  ${{ secrets.steam_username  }}
+        password:  ${{ secrets.steam_password  }}
+        configvdf: ${{ secrets.steam_configvdf }}
     
 
     # - name: configure
