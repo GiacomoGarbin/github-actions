@@ -34,26 +34,21 @@ jobs:
       run: |
         ~/SteamCMD/steamcmd.sh +login "$USERNAME" +app_update "$APPID" +quit
 
-    - name: Check result
-      run: |
-        ls -laR ~/Steam
-        cat /home/runner/Steam/logs/stderr.txt
-
     # - uses: actions/checkout@v4
     
-    # - name: Checkout portal64-still-alive
-    #   run: |
-    #     sudo apt install git -y
-    #     git clone https://github.com/mwpenny/portal64-still-alive.git portal64
+    - name: Checkout portal64-still-alive
+      run: |
+        sudo apt install git -y
+        git clone https://github.com/mwpenny/portal64-still-alive.git portal64
 
-    # - name: Setup and install dependencies
-    #   run: |
-    #     cd portal64
-    #     sudo chmod +x skelatool64/setup_dependencies.sh
-    #     sudo chmod +x tools/romfix64.sh
-    #     sudo chmod +x tools/setup.sh
-    #     ./tools/setup.sh
-    #     ln -s ~/Steam vpk/Portal
+    - name: Setup and install dependencies
+      run: |
+        cd portal64
+        sudo chmod +x skelatool64/setup_dependencies.sh
+        sudo chmod +x tools/romfix64.sh
+        sudo chmod +x tools/setup.sh
+        ./tools/setup.sh
+        ln -s ~/Steam/steamapps/common/Portal vpk/Portal
 
     # - name: Check result
     #   run: |
@@ -70,8 +65,8 @@ jobs:
     #     ls -la vpk/Portal/portal/resource
     #     ls -la vpk/Portal/portal/resource/closecaption_english.txt
   
-    # - name: Build ROM
-    #   run: |
-    #     cd portal64
-    #     make
+    - name: Build ROM
+      run: |
+        cd portal64
+        make
 
