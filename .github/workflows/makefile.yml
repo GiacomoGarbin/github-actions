@@ -13,28 +13,26 @@ jobs:
 
     steps:
 
-    # - name: Download SteamCMD
-    #   run: |
-    #     sudo apt-get install lib32gcc-s1
-    #     mkdir ~/SteamCMD
-    #     cd ~/SteamCMD
-    #     curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+    - name: Download SteamCMD
+      run: |
+        sudo apt-get install lib32gcc-s1
+        mkdir ~/SteamCMD
+        cd ~/SteamCMD
+        curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
-    # - name: Setup SteamCMD
-    #   env:
-    #     CONFIGVDF: ${{ secrets.steam_config_vdf }}
-    #   run: |
-    #     ~/SteamCMD/steamcmd.sh +quit
-    #     echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
+    - name: Setup SteamCMD
+      env:
+        CONFIGVDF: ${{ secrets.steam_config_vdf }}
+      run: |
+        ~/SteamCMD/steamcmd.sh +quit
+        echo "$CONFIGVDF" | base64 -d > ~/Steam/config/config.vdf
 
-    # - name: Download Portal
-    #   env:
-    #     USERNAME: ${{ secrets.steam_username }}
-    #     APPID:    400
-    #   run: |
-    #     ~/SteamCMD/steamcmd.sh +login "$USERNAME" +app_update "$APPID" +quit
-    
-
+    - name: Download Portal
+      env:
+        USERNAME: ${{ secrets.steam_username }}
+        APPID:    400
+      run: |
+        ~/SteamCMD/steamcmd.sh +login "$USERNAME" +app_update "$APPID" +quit
 
     # - uses: actions/checkout@v4
     
