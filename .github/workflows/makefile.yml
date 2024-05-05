@@ -50,8 +50,9 @@ jobs:
         ./tools/setup.sh
         ln -s ~/Steam/steamapps/common/Portal vpk/Portal
 
-    # - name: Check result
-    #   run: |
+    - name: Check result
+      run: |
+        env
     #     ls -la ~/Steam
     #     ls -la ~/Steam/portal
     #     ls -la ~/Steam/portal/resource
