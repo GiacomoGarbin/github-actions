@@ -1,8 +1,7 @@
 name: Makefile CI
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch
 
 env:
   BLENDER_3_6: "/snap/bin/blender"
