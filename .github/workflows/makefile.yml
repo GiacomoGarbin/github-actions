@@ -3,8 +3,6 @@ name: Makefile CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 env:
   BLENDER_3_6: "/snap/bin/blender"
@@ -54,13 +52,6 @@ jobs:
         sudo chmod +x tools/setup.sh
         ./tools/setup.sh
         ln -s ~/Steam/steamapps/common/Portal vpk/Portal
-        env
-
-    # - name: Check result
-    #   run: |
-    #     echo $PATH
-    #     # echo 'export PATH=$PATH:/opt/crashsdk/bin' >> ~/.bashrc
-    #     echo $PATH
   
     - name: Build ROM
       run: |
