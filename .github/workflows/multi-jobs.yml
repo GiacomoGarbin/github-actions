@@ -17,7 +17,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: write
-        path: main
+        path: makefiledemo/main
       
   read:
     runs-on: ubuntu-latest
