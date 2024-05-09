@@ -13,9 +13,15 @@ jobs:
         cd makefiledemo
         make
         ls -la
+        ./main
+    - uses: actions/upload-artifact@v4
+      with:
+        name: write
+        path: main
       
   read:
     runs-on: ubuntu-latest
+    needs: write
     steps:
     - name: read
       run: |
